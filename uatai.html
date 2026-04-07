@@ -1,0 +1,525 @@
+import React, { useState } from 'react';
+import { 
+  Target, BarChart2, Flag, AlertTriangle, CheckCircle, Zap, Clock, Search, 
+  Smartphone, Crosshair, ChevronRight, Layers, Fingerprint, Store, PieChart, 
+  Camera, Database, BrainCircuit, FastForward, Activity, Users, FileText, 
+  Server, RefreshCw, Diamond, LineChart, Briefcase, Globe, Timer, 
+  ArrowRightCircle, Quote, LayoutDashboard, Repeat, TrendingUp, ThumbsUp, 
+  Wrench, Microscope, Rocket, Link, ShieldCheck, XCircle, Info, Calendar, MapPin,
+  Coins, GraduationCap, UserPlus, HeartHandshake, Lightbulb, Gavel, Award, 
+  Maximize, ActivitySquare
+} from 'lucide-react';
+
+const App = () => {
+  // Mặc định vào tab UAT Champion theo luồng thuyết trình chiến lược
+  const [activeTab, setActiveTab] = useState('metrics'); 
+
+  // Component cho Tab Chính (Luồng Quyết Định)
+  const MainTabButton = ({ id, icon: Icon, label }) => (
+    <button
+      onClick={() => setActiveTab(id)}
+      className={`flex-1 flex flex-col md:flex-row items-center justify-center px-1 md:px-8 py-3 md:py-4 font-black uppercase tracking-tighter md:tracking-widest text-[9px] md:text-sm transition-all border-b-4 ${
+        activeTab === id
+          ? 'border-yellow-500 text-yellow-500 bg-slate-800/50'
+          : 'border-transparent text-slate-400 hover:text-slate-200'
+      }`}
+    >
+      <Icon size={16} className="mb-1 md:mb-0 md:mr-3 shrink-0" />
+      <span className="text-center leading-tight">{label}</span>
+    </button>
+  );
+
+  // Component cho Tab Phụ (Phụ lục tham chiếu)
+  const SecondaryTabButton = ({ id, icon: Icon, label }) => (
+    <button
+      onClick={() => setActiveTab(id)}
+      className={`flex items-center px-3 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all border ${
+        activeTab === id
+          ? 'bg-yellow-500 border-yellow-500 text-slate-900 shadow-lg shadow-yellow-500/20'
+          : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'
+      }`}
+    >
+      <Icon size={10} className="mr-1.5" />
+      {label}
+    </button>
+  );
+
+  return (
+    <div className="flex flex-col h-screen bg-slate-50 font-sans w-full overflow-hidden text-slate-900 leading-relaxed text-left">
+      
+      {/* =========================================
+          HEADER & NAVIGATION
+      ========================================= */}
+      <header className="bg-slate-900 text-white shadow-2xl z-30 shrink-0 border-b border-slate-800">
+        <div className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-3 md:py-4 gap-3 text-left">
+          <div className="flex items-center w-full md:w-auto text-left">
+            <div className="w-9 h-9 md:w-12 md:h-12 bg-yellow-500 rounded-lg flex items-center justify-center mr-3 shadow-lg shrink-0 border border-yellow-400">
+              <Search size={22} className="text-slate-900" />
+            </div>
+            <div className="flex-1 text-left">
+              <h1 className="text-sm md:text-xl font-black tracking-tight uppercase leading-tight text-left">
+                PoC AI Visual <span className="text-yellow-500">Search</span>
+              </h1>
+              <p className="text-[8px] md:text-[10px] text-slate-400 font-bold tracking-widest uppercase opacity-70 leading-none mt-1 text-left">
+                Tối Ưu Năng Lực Tra Cứu Sản Phẩm 2026
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 md:pb-0 w-full md:w-auto justify-end">
+            <span className="hidden lg:block text-[9px] font-black text-slate-500 uppercase mr-1 tracking-tighter">Phụ lục tham chiếu:</span>
+            <SecondaryTabButton id="next_hbt" icon={Store} label="NEXT HBT" />
+            <SecondaryTabButton id="benchmark" icon={Globe} label="Benchmark" />
+          </div>
+        </div>
+
+        <nav className="flex border-t border-slate-800 bg-slate-900/80 backdrop-blur-md">
+          <MainTabButton id="metrics" icon={BarChart2} label="UAT Champion" />
+          <MainTabButton id="summary" icon={LayoutDashboard} label="Tổng kết POC" />
+          <MainTabButton id="proposal" icon={Flag} label="Đề xuất triển khai" />
+        </nav>
+      </header>
+
+      {/* =========================================
+          CONTENT AREA
+      ========================================= */}
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 bg-slate-50 relative">
+        <div className="max-w-6xl mx-auto pb-24 text-left">
+          
+          <div className="mb-6 md:mb-10 pb-4 border-b-2 border-slate-200 text-left">
+            <div className="flex items-center gap-2 mb-2 text-left">
+              <div className="w-1.5 h-4 md:h-6 bg-yellow-500 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">PNJ Innovation Lab - Executive Report</span>
+            </div>
+            <h2 className="text-xl md:text-4xl font-black text-slate-800 tracking-tighter uppercase leading-tight text-left">
+              {activeTab === 'metrics' && 'Hiệu Suất Thực Chiến & Phản Hồi Champion'}
+              {activeTab === 'summary' && 'Nhận Định Ban Dự Án & Tổng Kết Visual Search'}
+              {activeTab === 'proposal' && 'Lộ Trình Scale-up & Chuyển Giao Công Nghệ'}
+              {activeTab === 'next_hbt' && 'UAT NEXT HBT: Nhật Ký Thực Chiến'}
+              {activeTab === 'benchmark' && 'Benchmark Toàn Cầu'}
+            </h2>
+          </div>
+
+          {/* =========================================
+              TAB 1 (MAIN): UAT CHAMPION 
+          ========================================= */}
+          {activeTab === 'metrics' && (
+            <div className="space-y-8 animate-fadeIn pb-12 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] flex items-center justify-between border border-slate-800 shadow-xl relative overflow-hidden group">
+                  <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity"><Users size={120} /></div>
+                  <div className="relative z-10 text-left">
+                    <p className="text-[10px] text-yellow-500 font-black uppercase tracking-widest mb-2 leading-none">Mạng lưới Champion</p>
+                    <p className="text-3xl md:text-5xl font-black text-white leading-none">12 <span className="text-xs font-normal text-slate-400 block mt-1 uppercase tracking-tight">6 ASM</span></p>
+                  </div>
+                </div>
+                <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-100 flex flex-col justify-between shadow-lg relative overflow-hidden">
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2 leading-none">Tốc độ Tra cứu</p>
+                  <p className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter leading-none text-yellow-600 text-left">1.56s</p>
+                  <span className="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 rounded font-bold w-fit mt-3 uppercase tracking-tighter leading-none">Phản hồi mượt mà</span>
+                </div>
+                <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-100 border-b-8 border-b-blue-500 shadow-lg flex flex-col justify-between text-left">
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2 leading-none">Độ chính xác (Top 10)</p>
+                  <p className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter leading-none text-blue-600">80%</p>
+                  <span className="text-[9px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold w-fit mt-3 uppercase tracking-tighter leading-none text-left">Vượt kỳ vọng PoC</span>
+                </div>
+                <div className="bg-white p-8 rounded-[2.5rem] border-2 border-slate-100 border-b-8 border-b-green-500 shadow-lg flex flex-col justify-between text-left">
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2 leading-none">Sẵn sàng vận hành</p>
+                  <p className="text-4xl md:text-5xl font-black text-slate-800 leading-none text-left">100%</p>
+                  <span className="text-[9px] text-slate-400 font-bold uppercase mt-3 tracking-widest leading-none text-left">RSM/ASM bảo chứng</span>
+                </div>
+              </div>
+
+              {/* HIGHLIGHT: Dữ liệu Pilot 6/3 - 9/3 */}
+              <div className="bg-yellow-50 border-2 border-yellow-200 p-6 md:p-8 rounded-[2.5rem] flex flex-col md:flex-row items-start md:items-center justify-between shadow-lg relative overflow-hidden text-left">
+                <div className="absolute right-0 top-0 opacity-10 pointer-events-none"><Zap size={150} className="text-yellow-500 -mt-10 -mr-10"/></div>
+                <div className="flex items-center relative z-10 mb-4 md:mb-0">
+                  <div className="w-16 h-16 bg-yellow-500 text-slate-900 rounded-[1.5rem] flex items-center justify-center mr-6 font-black text-3xl shadow-xl shrink-0">
+                    173
+                  </div>
+                  <div>
+                    <h3 className="text-slate-800 font-black uppercase tracking-widest text-sm md:text-lg leading-tight">Lượt Search Thực Tế</h3>
+                    <p className="text-slate-600 text-xs md:text-sm font-bold mt-1.5 uppercase tracking-tighter">Ghi nhận trong giai đoạn Pilot (Từ 6/3 đến 9/3)</p>
+                  </div>
+                </div>
+                <div className="relative z-10 flex items-center bg-white px-5 py-3 rounded-2xl border border-yellow-200 shadow-sm">
+                  <ActivitySquare size={18} className="text-green-500 mr-3" />
+                  <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-800">Tín hiệu User Adoption Cực Tốt</span>
+                </div>
+              </div>
+
+              {/* Tăng khả năng chốt sale & Bối cảnh */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
+                 <div className="bg-slate-900 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border border-slate-800 text-white relative overflow-hidden flex flex-col text-left">
+                    <div className="absolute top-0 right-0 p-8 opacity-5"><HeartHandshake size={200} className="text-yellow-500" /></div>
+                    <h3 className="font-black text-yellow-500 uppercase text-[10px] md:text-xs tracking-[0.3em] mb-10 flex items-center relative z-10 text-left">
+                      <HeartHandshake size={18} className="mr-3" /> Trợ lực tư vấn & Chốt đơn qua Visual Search
+                    </h3>
+                    <div className="space-y-10 relative z-10 w-full text-left">
+                       {[
+                         { label: "Hỗ trợ rõ ràng / Tư vấn dễ hơn", p: 66, color: "from-green-600 to-green-400", zap: true },
+                         { label: "Có hỗ trợ nhưng chưa nhiều", p: 17, color: "from-yellow-700 to-yellow-500" },
+                         { label: "Chưa hỗ trợ nhiều", p: 17, color: "from-slate-600 to-slate-500", dim: true }
+                       ].map((item, idx) => (
+                         <div key={idx} className={item.dim ? 'opacity-50' : ''}>
+                           <div className="flex justify-between items-end mb-3 text-left">
+                             <span className="text-[10px] md:text-sm font-black text-slate-200 uppercase tracking-widest flex items-center">{item.label} {item.zap && <Zap size={16} className="ml-2 text-green-400 animate-pulse" />}</span>
+                             <span className="text-3xl font-black text-white leading-none">{item.p}%</span>
+                           </div>
+                           <div className="w-full bg-slate-800 rounded-full h-4 border border-slate-700 overflow-hidden"><div className={`bg-gradient-to-r ${item.color} h-full rounded-full transition-all duration-1000`} style={{ width: `${item.p}%` }}></div></div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+
+                 <div className="bg-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-slate-200 flex flex-col text-left">
+                    <h3 className="font-black text-slate-800 mb-10 uppercase text-[10px] md:text-xs tracking-[0.3em] border-b pb-5 flex items-center text-left">
+                      <Lightbulb size={18} className="mr-3 text-blue-500" /> Bối cảnh Visual Search hữu ích nhất
+                    </h3>
+                    <div className="space-y-6 flex-1 text-left">
+                       {[
+                         { l: "Khách tìm mẫu tương tự SP có sẵn", p: 50, color: "bg-slate-900" },
+                         { l: "Khách đưa ảnh mạng / MXH", p: 17, color: "bg-blue-600" },
+                         { l: "Gợi ý chủ động từ TVV", p: 17, color: "bg-blue-400" },
+                         { l: "Khách quên mã, chỉ có hình", p: 16, color: "bg-slate-400" }
+                       ].map((item, i) => (
+                         <div key={i} className="text-left">
+                           <div className="flex justify-between text-[10px] font-black mb-2 uppercase tracking-widest text-slate-600 text-left"><span>{item.l}</span><span className="text-slate-900 font-black">{item.p}%</span></div>
+                           <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden shadow-inner"><div className={`${item.color} h-full rounded-full transition-all duration-1000`} style={{ width: `${item.p}%` }}></div></div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+
+              {/* Feedback Matrix */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-left">
+                <div className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100 border-t-8 border-t-green-500">
+                  <h3 className="font-black text-slate-800 mb-8 uppercase text-xs tracking-widest flex items-center"><ThumbsUp size={20} className="mr-3 text-green-500" /> Những điểm tốt ghi nhận</h3>
+                  <ul className="space-y-6 text-left">
+                    {[
+                      { t: "Tốc độ tìm kiếm nhanh", d: "Xóa bỏ triệt để 'thời gian chết' tư vấn khi khách đưa ảnh." },
+                      { t: "Độ chính xác 80% (Top 10)", d: "Nhận diện chính xác sản phẩm ngay trong 10 kết quả đầu tiên." },
+                      { t: "Tiềm năng thực tế", d: "Đáp ứng 100% nhu cầu tra cứu hình ảnh tại quầy của TVV." },
+                      { t: "UI/UX dễ tiếp cận", d: "Thiết kế tinh giản, TVV có thể ứng dụng ngay lập tức." }
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start text-left"><div className="bg-green-100 p-1.5 rounded-lg mr-4 mt-0.5 shrink-0 shadow-sm"><CheckCircle size={18} className="text-green-600" /></div><div><span className="text-sm md:text-base font-black text-slate-800 block uppercase tracking-tight">{item.t}</span><p className="text-xs md:text-sm text-slate-500 mt-1 leading-relaxed">{item.d}</p></div></li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100 border-t-8 border-t-yellow-500 text-left">
+                  <h3 className="font-black text-slate-800 mb-8 uppercase text-xs tracking-widest flex items-center"><Wrench size={20} className="mr-3 text-yellow-600" /> Ưu Tiên Tối Ưu Pilot</h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: AlertTriangle, c: "text-red-500", t: "Lỗi SP Bạc vs Kim Cương", d: "AI nhiễu do ảnh Render 3D; cần train bằng tập ảnh thực địa tại quầy." },
+                      { icon: RefreshCw, c: "text-blue-500", t: "Tính Nhất Quán Dữ Liệu", d: "Đảm bảo 1 ảnh search nhiều lần ra kết quả đồng nhất 100%." },
+                      { icon: Database, c: "text-slate-400", t: "Cập nhật mẫu mới (CU)", d: "Cần cơ chế Auto-Update liên tục từ khối CU khi ra BST mới." },
+                      { icon: Smartphone, c: "text-slate-600", t: "Intent Search Mô tả", d: "Hoàn thiện search theo mô tả cấu thành (Đá tấm, vỏ hoa...) cho TVV." }
+                    ].map((item, i) => (
+                      <div key={i} className="p-4 bg-slate-50 rounded-2xl border border-slate-200 group hover:border-yellow-500/50 transition-colors text-left">
+                        <div className="flex items-center mb-1 text-left">
+                          <item.icon size={14} className={`${item.c} mr-2`} />
+                          <span className="uppercase text-[10px] font-black text-slate-800 tracking-widest leading-none">{item.t}</span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 leading-relaxed font-bold italic">"{item.d}"</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* =========================================
+              TAB 2 (MAIN): TỔNG KẾT POC (VERDICT)
+          ========================================= */}
+          {activeTab === 'summary' && (
+            <div className="space-y-10 animate-fadeIn pb-12 text-left">
+              <div className="bg-slate-900 p-8 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl border border-yellow-500/40 relative overflow-hidden text-white text-left">
+                <div className="absolute -right-20 -top-20 opacity-10 pointer-events-none"><Award size={300} className="text-yellow-500" /></div>
+                <div className="relative z-10 text-left">
+                  <div className="inline-block px-5 py-2 bg-yellow-500 text-slate-900 text-[10px] font-black uppercase mb-8 rounded-full shadow-lg">Board Verdict</div>
+                  <h2 className="text-3xl md:text-6xl font-black uppercase mb-10 leading-tight tracking-tighter text-left">Chứng Thực Thành Công POC</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                     {[
+                       { t: "Khả thi kỹ thuật", d: "Hệ thống đáp ứng CCU cao, phản hồi < 2s, chi phí vận hành cực thấp.", icon: ShieldCheck },
+                       { t: "Nhu cầu thực tế", d: "TVV khao khát công cụ giải quyết điểm mù khi khách đưa ảnh mạng.", icon: Users },
+                       { t: "Khơi gợi ý tưởng", d: "End-user đề xuất mở rộng GKD, Thu đổi trên nền tảng Visual Search.", icon: Lightbulb }
+                     ].map((item, i) => (
+                       <div key={i} className="bg-slate-800/50 p-6 rounded-3xl border border-slate-700 backdrop-blur-sm group hover:bg-slate-800 transition-colors text-left">
+                          <item.icon size={24} className="text-yellow-500 mb-4 text-left" />
+                          <h4 className="font-black text-white text-xs uppercase tracking-widest mb-3 leading-tight text-left">{item.t}</h4>
+                          <p className="text-xs text-slate-400 font-medium leading-relaxed text-left">{item.d}</p>
+                       </div>
+                     ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* HƯỚNG PHÁT TRIỂN TIẾP THEO */}
+              <div className="bg-white p-8 md:p-14 rounded-[3rem] shadow-xl border border-slate-200 text-left">
+                <h3 className="font-black text-slate-800 mb-10 uppercase text-xs tracking-[0.3em] flex items-center border-b pb-4 text-left">
+                  <Rocket size={20} className="mr-3 text-blue-600" /> Hướng phát triển Visual Search tiếp theo
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                  {[
+                    { t: "Mở rộng Chủng loại", d: "Phủ sóng 100% rổ hàng BST mới từ khối CU.", icon: Layers },
+                    { t: "Tối ưu Accuracy", d: "Xử lý triệt để bài toán chất liệu Bạc/Kim cương.", icon: Target },
+                    { t: "New Use Cases", d: "Nghiên cứu tra cứu GIA & Đơn hàng cũ qua ảnh.", icon: Microscope },
+                    { t: "Tích hợp mPOS", d: "Trở thành module tra cứu hình ảnh lõi cho TVV.", icon: Smartphone },
+                    { t: "Auto-Update Dữ liệu", icon: RefreshCw, d: "Cơ chế đồng bộ ảnh mẫu và BST mới Real-time." },
+                    { t: "Triển khai diện rộng", icon: Globe, d: "Phủ sóng 100% cửa hàng và kênh Online." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start p-5 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-blue-500/30 transition-all text-left">
+                       <item.icon size={18} className="text-blue-500 mr-3 mt-1 shrink-0 text-left" />
+                       <div className="text-left">
+                          <h4 className="font-black text-slate-800 text-[11px] uppercase tracking-widest leading-none text-left">{item.t}</h4>
+                          <p className="text-[10px] text-slate-500 font-bold mt-2 leading-relaxed uppercase tracking-tighter text-left">{item.d}</p>
+                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-yellow-500 p-8 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl border-4 border-yellow-600 text-slate-900 relative overflow-hidden text-left">
+                 <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none text-slate-800"><Gavel size={250} /></div>
+                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 text-left">
+                    <div className="flex-1 text-left">
+                       <h3 className="font-black uppercase text-xs tracking-[0.4em] mb-4 flex items-center text-slate-800 text-left">
+                          <Gavel size={20} className="mr-3 text-left" /> Đề xuất chính thức từ ban dự án
+                       </h3>
+                       <h2 className="text-3xl md:text-5xl font-black uppercase mb-6 leading-none tracking-tighter text-left">Phê Duyệt <br/> GO-LIVE Hệ Thống</h2>
+                       <p className="text-base md:text-lg text-slate-800 font-bold leading-relaxed text-justify italic border-l-4 border-slate-900 pl-6 text-left">
+                          "Dựa trên chứng thực PoC: giảm thời gian tìm kiếm từ <strong>3 phút xuống dưới 2 giây</strong>. Đề nghị phê duyệt đi tiếp để xây dựng vũ khí Visual Search độc bản cho PNJ."
+                       </p>
+                    </div>
+                    <div className="bg-slate-900 text-white p-10 rounded-[2.5rem] text-center shadow-2xl flex flex-col justify-center border-2 border-yellow-400 shrink-0">
+                       <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 text-yellow-500 leading-none text-center">ROI Dự kiến</p>
+                       <span className="text-6xl md:text-8xl font-black tracking-tighter animate-pulse text-center">+27%</span>
+                       <p className="text-[10px] font-black uppercase mt-2 opacity-60 leading-none text-center">Conversion Lift</p>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* =========================================
+              TAB 3 (MAIN): ĐỀ XUẤT TRIỂN KHAI
+          ========================================= */}
+          {activeTab === 'proposal' && (
+            <div className="space-y-10 animate-fadeIn pb-12 text-left">
+              
+              {/* HERO BOX: CHUYỂN GIAO & LỘ TRÌNH */}
+              <div className="bg-slate-900 p-8 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl text-white border border-yellow-500/30 overflow-hidden relative text-left">
+                <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-yellow-500 rounded-full blur-[120px] opacity-10 -mr-40 -mt-40 pointer-events-none"></div>
+                
+                <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-10 border-b border-slate-700 pb-10 mb-8 text-left">
+                  <div className="text-left">
+                    <h2 className="text-3xl md:text-6xl font-black text-yellow-500 uppercase mb-4 tracking-tighter leading-tight text-left">Lộ Trình Triển Khai <br/> Quy Mô Toàn Quốc</h2>
+                    <p className="text-xs md:text-sm text-slate-400 uppercase tracking-[0.3em] font-black opacity-70 italic text-left">Post-GO Phase | Ecosystem Scaling 2026</p>
+                  </div>
+                  <div className="w-full md:w-auto px-14 py-6 bg-yellow-500 text-slate-900 font-black uppercase rounded-2xl shadow-[0_0_60px_rgba(234,179,8,0.5)] border-4 border-yellow-400 text-center text-lg md:text-2xl tracking-[0.2em] hover:scale-105 transition-all cursor-pointer">
+                    Approve GO-LIVE
+                  </div>
+                </div>
+
+                {/* CONSULTANT BANNER */}
+                <div className="bg-yellow-500/10 border border-yellow-500/30 p-5 md:p-6 rounded-2xl md:rounded-[2rem] flex items-center md:items-start relative z-10 mb-10 shadow-inner group hover:bg-yellow-500/20 transition-colors">
+                    <ShieldCheck className="text-yellow-500 mr-5 shrink-0 mt-1" size={28} />
+                    <p className="text-slate-300 text-xs md:text-sm leading-relaxed text-justify">
+                        <strong className="text-yellow-500 uppercase tracking-widest block mb-2 text-sm">Định vị vai trò chuyển giao:</strong> 
+                        Ngay khi POC được duyệt GO-LIVE, <strong>Ban dự án PoC AI Visual Search</strong> sẽ lùi lại và chuyển sang vai trò <strong>CONSULT (Cố vấn chuyên môn & Bảo chứng công nghệ)</strong>. Quyền điều hành thực thi sẽ được trao cho một <strong>Ban Dự Án Triển Khai</strong> chuyên trách mới, nhằm đảm bảo nguồn lực tập trung tối đa cho việc Scale-up.
+                    </p>
+                </div>
+                
+                {/* RESOURCES GRID */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 text-left">
+                  <div className="bg-slate-800/60 p-8 rounded-[2.5rem] border border-slate-700 backdrop-blur-xl group hover:border-yellow-500/40 transition-colors text-left">
+                    <div className="flex items-center mb-6"><UserPlus size={24} className="text-yellow-500 mr-4"/><h4 className="font-black text-yellow-500 text-xs uppercase tracking-widest">Nguồn lực Đội ngũ</h4></div>
+                    <ul className="text-[11px] text-slate-300 space-y-4 uppercase font-black tracking-tight text-left">
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Thành lập BDA Triển khai chuyên trách</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> BDA PoC chuyển sang vai trò Consult</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Phê duyệt hạ tầng Cloud Server</li>
+                    </ul>
+                  </div>
+                  <div className="bg-slate-800/60 p-8 rounded-[2.5rem] border border-slate-700 backdrop-blur-xl group hover:border-yellow-500/40 transition-colors text-left">
+                    <div className="flex items-center mb-6"><Smartphone size={24} className="text-yellow-500 mr-4"/><h4 className="font-black text-yellow-500 text-xs uppercase tracking-widest">Hệ thống mPOS</h4></div>
+                    <ul className="text-[11px] text-slate-300 space-y-4 uppercase font-black tracking-tight text-left">
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Nhúng AI Module vào One-Stop mPOS</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Đấu nối API Tồn kho (Near Store)</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Kích hoạt luồng Multi-Upload hệ thống</li>
+                    </ul>
+                  </div>
+                  <div className="bg-slate-800/60 p-8 rounded-[2.5rem] border border-slate-700 backdrop-blur-xl group hover:border-yellow-500/40 transition-colors text-left">
+                    <div className="flex items-center mb-6"><GraduationCap size={24} className="text-yellow-500 mr-4"/><h4 className="font-black text-yellow-500 text-xs uppercase tracking-widest">Vận hành & Đào tạo</h4></div>
+                    <ul className="text-[11px] text-slate-300 space-y-4 uppercase font-black tracking-tight text-left">
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Ban hành SOP tích hợp Visual Search</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Đào tạo diện rộng cho 100% Cửa hàng</li>
+                      <li className="flex items-start"><CheckCircle size={14} className="text-green-500 mr-3 shrink-0 mt-0.5"/> Quy trình xử lý ngoại lệ (Exception Handling)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* TIMELINE: HƯỚNG TỚI INTELLIGENCE HUB */}
+              <div className="bg-white p-10 md:p-16 rounded-[3rem] shadow-xl border border-slate-200 relative overflow-hidden text-left">
+                 <h3 className="font-black text-slate-800 mb-14 uppercase text-xs tracking-[0.3em] flex items-center justify-center md:justify-start">
+                    <MapPin size={24} className="mr-4 text-blue-600" /> Pipeline Chuyển giao & Scale-up
+                 </h3>
+
+                 <div className="relative flex flex-col md:flex-row items-stretch md:items-start justify-between gap-12 md:gap-6 px-4 text-left">
+                    {/* Đường line chạy dọc/ngang */}
+                    <div className="hidden md:block absolute top-[45px] left-20 right-20 h-1 bg-slate-100 -z-0"></div>
+                    
+                    {[
+                      { 
+                        phase: "Phê Duyệt GO-LIVE", 
+                        t: "Bước 1", 
+                        desc: "Nghiệm thu toàn bộ kết quả POC. Kích hoạt lệnh chuyển trạng thái từ thử nghiệm sang thực thi quy mô lớn.", 
+                        i: CheckCircle, 
+                        c: "bg-slate-900" 
+                      },
+                      { 
+                        phase: "Chuyển Giao Công Nghệ", 
+                        t: "Bước 2", 
+                        desc: "Bàn giao giải pháp kỹ thuật. Ban dự án PoC lùi về đảm nhận vai trò Consult (Cố vấn & Bảo chứng).", 
+                        i: RefreshCw, 
+                        c: "bg-blue-500" 
+                      },
+                      { 
+                        phase: "Lập BDA Triển Khai", 
+                        t: "Bước 3", 
+                        desc: "Thành lập Ban Dự Án Triển Khai chuyên trách, tiếp nhận công nghệ và thiết lập Master Plan vận hành.", 
+                        i: Users, 
+                        c: "bg-yellow-500" 
+                      },
+                      { 
+                        phase: "Mở Rộng Toàn Quốc", 
+                        t: "Bước 4", 
+                        desc: "Nhúng hệ thống vào mPOS. Roll-out đào tạo và triển khai cho 100% mạng lưới cửa hàng PNJ.", 
+                        i: Globe, 
+                        c: "bg-green-500" 
+                      },
+                      { 
+                        phase: "Intelligence Hub", 
+                        t: "Mục tiêu", 
+                        desc: "Tự động hóa CRM, kết nối Customer 360, hướng đến Hệ sinh thái Visual Intelligence toàn diện.", 
+                        i: Rocket, 
+                        c: "bg-purple-600" 
+                      }
+                    ].map((item, i) => (
+                      <div key={i} className="flex flex-row md:flex-col items-start md:items-center relative z-10 flex-1 group text-left md:text-center">
+                         <div className={`w-14 h-14 md:w-20 md:h-20 rounded-3xl md:rounded-[2rem] ${item.c} text-white flex items-center justify-center shadow-2xl mb-0 md:mb-6 mr-6 md:mr-0 group-hover:scale-110 transition-transform shrink-0 shadow-slate-300`}>
+                            <item.i size={24} />
+                         </div>
+                         <div className="flex-1 text-left md:text-center">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-1">{item.t}</span>
+                            <h4 className="font-black text-slate-800 text-sm uppercase mb-3 leading-tight tracking-tighter">{item.phase}</h4>
+                            <p className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-tighter md:px-2 leading-relaxed text-justify md:text-center">{item.desc}</p>
+                         </div>
+                         {/* Dây line nối trên Mobile */}
+                         {i < 4 && <div className="md:hidden absolute left-[27px] top-[56px] w-1 h-[calc(100%+48px)] bg-slate-100 -z-0"></div>}
+                      </div>
+                    ))}
+                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* =========================================
+              APPENDIX: NEXT HBT & BENCHMARK
+          ========================================= */}
+          {activeTab === 'next_hbt' && (
+            <div className="space-y-10 animate-fadeIn pb-12 text-left">
+               <div className="bg-slate-900 rounded-[3rem] shadow-2xl border border-slate-800 overflow-hidden relative p-8 md:p-14 text-white text-left">
+                <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none"><FastForward size={250} className="text-yellow-500" /></div>
+                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 text-left">
+                  <div className="max-w-xl text-left"><h3 className="text-yellow-500 font-black uppercase tracking-[0.3em] text-[10px] md:text-xs mb-6 flex items-center text-left"><Activity size={18} className="mr-3" /> Nhật Ký Thực Chiến</h3><p className="text-lg md:text-2xl text-slate-300 leading-relaxed mb-8 font-medium italic text-left">"Xóa bỏ 5-7 phút chờ đợi vô nghĩa khi TVV tra cứu thủ công."</p><div className="inline-flex bg-green-500/10 rounded-2xl px-6 py-3 border border-green-500/50 text-left"><span className="text-green-400 font-black text-xs md:text-sm uppercase tracking-widest flex items-center shadow-sm text-left"><CheckCircle size={18} className="mr-3 text-left"/> 100% PHÙ HỢP THỰC TẾ BÁN LẺ</span></div></div>
+                  <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-2xl text-center flex items-center justify-center gap-8 shadow-inner"><div className="text-center group"><span className="block text-3xl md:text-5xl text-slate-500 font-black line-through mb-1">5-7'</span><span className="text-[10px] text-slate-600 uppercase font-black tracking-widest text-center">Thủ công</span></div><ChevronRight size={32} className="text-yellow-500 animate-pulse text-center" /><div className="text-center bg-yellow-500/10 p-6 rounded-[2rem] border-2 border-yellow-500/30 shadow-2xl text-center"><span className="block text-5xl md:text-7xl text-white font-black italic tracking-tighter text-center">30s</span><span className="text-[10px] text-yellow-500 uppercase font-black tracking-[0.2em] mt-2 block text-center">AI Search</span></div></div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-left">
+                {[ { l: "Tổng Lượt Search", v: "177" }, { l: "Hài lòng TVV", v: "83.4%" }, { l: "Dùng / Ngày", v: "~6", g: true }, { l: "Tốc độ API", v: "5.36s" } ].map((m, idx) => (
+                  <div key={idx} className={`bg-white p-8 rounded-[2rem] border-2 shadow-xl ${m.g ? 'border-yellow-500 shadow-yellow-500/10' : 'border-slate-100 shadow-slate-200/5'} text-center`}><p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-2 leading-none text-center">{m.l}</p><p className="text-3xl font-black text-slate-800 tracking-tighter text-center">{m.v}</p></div>
+                ))}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div className="bg-white p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-slate-100 flex flex-col text-left"><h3 className="font-black text-slate-800 mb-10 uppercase text-xs tracking-widest flex items-center border-b pb-4">Phân Tích Hành Vi</h3><div className="space-y-8 flex-1 text-left">{[{ l: "Hybrid (Ảnh + Mã)", p: 34 }, { l: "Text Only", p: 34 }, { l: "Visual Only", p: 32, g: true }].map((item, i) => (<div key={i}><div className="flex justify-between text-xs font-black mb-2 uppercase tracking-widest text-slate-600"><span>{item.l}</span><span className="text-slate-900 font-black">{item.p}%</span></div><div className="w-full bg-slate-100 rounded-full h-3 shadow-inner overflow-hidden"><div className={`${item.g ? 'bg-yellow-500' : 'bg-slate-800'} h-full rounded-full transition-all duration-1000`} style={{ width: `${item.p}%` }}></div></div></div>))}</div></div>
+                <div className="bg-white p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-slate-100 md:col-span-2 text-left"><h3 className="font-black text-slate-800 mb-10 uppercase text-xs tracking-widest flex items-center border-b pb-4"><Zap size={20} className="mr-3 text-yellow-500" /> Cải Tiến Thực Địa</h3><div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-left"><div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-200 shadow-sm text-left"><h4 className="font-black text-[11px] md:text-xs uppercase tracking-widest mb-4">Multi-Upload</h4><p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase tracking-tighter">Tải lên 2-3 ảnh đa góc độ, triệt tiêu sai số.</p></div><div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-200 shadow-sm text-left"><h4 className="font-black text-[11px] md:text-xs uppercase tracking-widest mb-4">Train Dây Chuyền</h4><p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase tracking-tighter text-left">Ưu tiên dòng hàng hoạ tiết tinh xảo.</p></div><div className="bg-slate-900 text-white p-8 rounded-[2rem] md:col-span-2 flex items-center border-l-[10px] border-yellow-500 shadow-2xl text-left"><Store size={32} className="text-yellow-500 mr-6 shrink-0 text-left" /><p className="text-xs md:text-sm font-black uppercase tracking-widest leading-relaxed text-left">Tích hợp mPOS One-Stop-Shop: Xem tồn kho & Mix-Match ngay khi quét ảnh.</p></div></div></div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'benchmark' && (
+            <div className="space-y-10 animate-fadeIn pb-12 text-left">
+              <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-slate-200 text-center text-left"><h3 className="font-black text-slate-800 mb-12 uppercase tracking-[0.3em] text-xs flex items-center justify-center border-b pb-6 text-center"><Globe size={24} className="mr-4 text-blue-600 text-center" /> Mega-Trend Bán Lẻ Toàn Cầu</h3><div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center"><div className="p-4 border-r-2 border-slate-100 last:border-0 text-center"><span className="text-5xl md:text-7xl font-black text-slate-900 block mb-4 tracking-tighter text-center">20 Tỷ</span><span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] block text-center">Search Lens / Tháng</span></div><div className="p-4 border-r-2 border-slate-100 last:border-0 text-center"><span className="text-5xl md:text-7xl font-black text-slate-900 block mb-4 tracking-tighter text-center">36%</span><span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] block text-center">KH Retail Ưu Tiên Visual Search</span></div><div className="p-10 bg-yellow-50/50 rounded-[3rem] border-2 border-yellow-100 text-center"><span className="text-6xl md:text-8xl font-black text-green-600 block mb-4 tracking-tighter text-center">+27%</span><span className="text-[10px] font-black text-yellow-700 uppercase tracking-[0.2em] block text-center">Conversion Lift</span></div></div></div>
+              
+              {/* Framework Tracking T1-T2-T3 (MASTER FRAMEWORK) */}
+              <div className="bg-white p-8 md:p-14 rounded-[3rem] shadow-2xl border border-slate-200 text-left">
+                <h3 className="font-black text-slate-800 mb-12 uppercase text-xs tracking-[0.3em] border-b border-slate-100 pb-5 flex items-center">
+                  <Target size={22} className="mr-4 text-slate-500" /> Cấu Trúc Tracking Thời Gian (T1 - T2 - T3)
+                </h3>
+                <div className="flex flex-col md:flex-row items-center justify-between mb-2 relative px-4 md:px-10">
+                  <div className="hidden md:block absolute top-[40px] left-32 right-32 h-1.5 bg-slate-100 -z-0"></div>
+                  {[
+                    { t: "T1", title: "Điểm Neo (Start)", sub: "TVV nhận hình từ khách", bg: "bg-slate-900" },
+                    { t: "T2", title: "Hit Product", sub: "TVV tìm được sản phẩm đầu tiên", bg: "bg-blue-600" },
+                    { t: "T3", title: "Full Suggestion", sub: "TVV đề xuất được danh sách mẫu", bg: "bg-yellow-500", text: "text-slate-900" }
+                  ].map((m, i) => (
+                    <div key={i} className="flex flex-col items-center relative z-10 w-full md:w-1/3 mb-12 md:mb-0">
+                      <div className={`w-20 h-20 md:w-24 md:h-24 rounded-full ${m.bg} ${m.text || 'text-white'} font-black flex items-center justify-center text-3xl md:text-4xl mb-6 md:mb-8 border-[8px] md:border-[10px] border-slate-50 shadow-2xl`}>{m.t}</div>
+                      <span className="text-sm md:text-base font-black text-slate-800 uppercase tracking-widest mb-2 leading-none text-center">{m.title}</span>
+                      <span className="text-[10px] text-slate-500 px-4 md:px-6 text-center uppercase font-black leading-relaxed tracking-wider">{m.sub}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* KPI COMPARISON TABLE (MATH FORMULAS) */}
+              <div className="bg-slate-900 p-8 md:p-14 rounded-[3rem] shadow-2xl text-white border border-slate-800 relative overflow-hidden text-left">
+                <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none"><Timer size={300} className="text-yellow-500" /></div>
+                <h3 className="font-black text-yellow-500 mb-12 uppercase text-xs tracking-[0.3em] flex items-center border-b border-slate-700 pb-5 relative z-10 text-left">
+                  <Timer size={22} className="mr-4 text-left" /> Giải Phẫu KPI Nút Thắt Vận Hành
+                </h3>
+                <div className="overflow-x-auto no-scrollbar relative z-10 text-left">
+                  <table className="w-full border-collapse min-w-[700px] text-left">
+                    <thead className="text-left">
+                      <tr className="border-b border-slate-700 text-[10px] uppercase text-slate-500 font-black text-left">
+                        <th className="py-8 px-8 text-left w-1/3">Chỉ Số KPI (Đo lường)</th>
+                        <th className="py-8 px-8 bg-slate-800/50 text-left">Manual (Thủ Công)</th>
+                        <th className="py-8 px-8 bg-yellow-500/10 text-yellow-500 text-left">AI Visual Search</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-sm font-medium text-left">
+                      <tr className="border-b border-slate-800 group hover:bg-white/5 transition-colors text-left">
+                        <td className="py-10 px-8 font-black text-slate-300 text-left">
+                          <span className="uppercase tracking-widest text-lg block mb-2">Search Time</span>
+                          <span className="text-slate-500 text-xs italic bg-slate-800 px-3 py-1 rounded-md inline-block">Công thức: T2 - T1</span>
+                        </td>
+                        <td className="py-10 px-8 bg-slate-800/50 text-left text-red-400 font-bold text-2xl tracking-tighter">3 - 5 Phút</td>
+                        <td className="py-10 px-8 text-green-400 font-black text-4xl tracking-tighter text-left bg-yellow-500/5">{"<"} 10s</td>
+                      </tr>
+                      <tr className="bg-slate-800 shadow-[inset_0_4px_30px_rgba(0,0,0,0.6)] text-left">
+                        <td className="py-12 px-8 font-black text-white text-left rounded-bl-[2rem]">
+                          <span className="uppercase tracking-widest text-xl block mb-2 text-yellow-500">Suggestion Time</span>
+                          <span className="text-slate-400 text-xs italic bg-slate-900 px-3 py-1 rounded-md border border-slate-700 inline-block">Công thức: T3 - T1</span>
+                        </td>
+                        <td className="py-12 px-8 font-black text-red-500 text-3xl text-left italic bg-slate-800/50">5 - 7 Phút</td>
+                        <td className="py-12 px-8 font-black text-slate-900 text-6xl animate-pulse rounded-br-[2rem] text-left bg-yellow-500 tracking-tighter shadow-[0_0_40px_rgba(234,179,8,0.3)]">30-60s</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
